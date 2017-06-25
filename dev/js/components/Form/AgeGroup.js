@@ -8,23 +8,24 @@ class AgeGroup extends Component {
   ageList() {
     return this.props.ageGroup.map( age => {
       return (
-        <option 
-          key={age.id} 
+        <li 
+          key={ age.id }
+          onClick={() => this.props.selectAgeGroup(age.name)}
+          value={ age.name }
         >
           {age.name}
-        </option>
+        </li>
       );
     });
-  }
+  };
 
   render() {
     return (
-      <select
-        id="agegroup"
-        onChange={ this.props.onSelectAgeGroup }
-      >
-        {this.ageList()}
-      </select>
+      <div>
+        <ul className="DropDown">
+          {this.ageList()}
+        </ul>
+      </div>
     )
   }
 }
@@ -32,14 +33,13 @@ class AgeGroup extends Component {
 function mapStateToProps(state) {
   return {
     ageGroup: state.ageGroup,
+    main: state.main.toObject()
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onSelectAgeGroup: (e) => dispatch(selectAgeGroup(e.target.value)),
-  }
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({selectAgeGroup: selectAgeGroup}, dispatch);
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AgeGroup);
+export default connect(mapStateToProps, matchDispatchToProps)(AgeGroup);

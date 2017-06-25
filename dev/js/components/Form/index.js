@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import QuestWrap from './QuestWrap';
+import classnames from 'classnames'
 import AgeGroup from './AgeGroup';
 import Hobby from './Hobby';
 import Cross from './Cross';
-import ButtonForm from './ButtonForm';
 import { changeFirstname, changeSurname, changeSex, changeHobby, nextStep, start } from '../../actions';
+import Select from 'react-select';
+import style from './style.scss';
 
 class Form extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ageclass: "FormDiv Close",
+      hobbyclass: "FormDiv Close",
+    };
+  }
+
+  openAgeSelect() {
+    if(this.state.ageclass === "FormDiv Close") {
+      this.setState({ ageclass: "FormDiv Open" });
+    }
+    else {
+      this.setState({ ageclass: "FormDiv Close" });
+    }
+  }
+
+  openHobbySelect() {
+    if(this.state.hobbyclass === "FormDiv Close") {
+      this.setState({ hobbyclass: "FormDiv Open" });
+    }
+    else {
+      this.setState({ hobbyclass: "FormDiv Close" });
+    }
+  }
 
   render() {
-    
+
     return (
-      <QuestWrap>
+      <div className="QuestWrap">
         <Cross
           value="Intro"
           onClick={ this.props.onStart }
@@ -21,7 +47,7 @@ class Form extends Component {
         <form
           onSubmit={ this.props.onNextStep }
         >
-          <div>
+          <div className="FormDiv">
             <label>Jméno<span>*</span></label>
             <input
               id="firstname"
@@ -32,7 +58,7 @@ class Form extends Component {
               autoComplete="off"
             />
           </div>
-          <div>
+          <div className="FormDiv">
             <label>Příjmení<span>*</span></label>
             <input
               id="surname"
@@ -43,11 +69,18 @@ class Form extends Component {
               autoComplete="off"
             />
           </div>
-          <div>
+          <div className={this.state.ageclass}>
             <label>Věková kategorie<span>*</span></label>
-            <AgeGroup />
+            <div
+              onClick={this.openAgeSelect.bind(this)}
+            >
+              <span className="SpanSelect">
+                {this.props.main.agegroup}
+              </span>
+              <AgeGroup/>
+            </div>
           </div>
-          <div>
+          <div className="FormDiv">
             <label>Pohlaví<span>*</span></label>
             <span>
               <input
@@ -68,21 +101,38 @@ class Form extends Component {
               />Žena
             </span>
           </div>
-          <div>
+          <div className="FormDiv">
             <label>Oblibená činnost<span>*</span></label>
             <input
               list="hobby"
               name="hobby"
+              spellCheck="true"
               required
               onChange={ this.props.onChangeHobby }
             />
-            <Hobby />
           </div>
-          <ButtonForm>
+          <div className={this.state.hobbyclass}>
+            <label>Oblíbená činnost<span>*</span></label>
+            <div
+              onClick={this.openHobbySelect.bind(this)}
+            >
+              <span className="SpanInput">
+                <input
+                  list="hobby"
+                  name="hobby"
+                  spellCheck="true"
+                  required
+                  onChange={ this.props.onChangeHobby }
+                />
+              </span>
+              <Hobby/>
+            </div>
+          </div>
+          <button className="ButtonForm">
             Odeslat formulář
-          </ButtonForm>
+          </button>
         </form> 
-      </QuestWrap>
+      </div>
     );
   }
 }
@@ -100,7 +150,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    main: state.main.toObject()
+    main: state.main.toObject(),
   };
 }
 

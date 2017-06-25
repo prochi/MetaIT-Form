@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import P from './P';
+import style from './style.scss';
 
 class Thanks extends Component {
 
   render() {
     return (
-      <div>
-        <P>Dotazník byl úspěšně odeslán</P>
+      <div className="ThanksWrapper">
+        <p>Dotazník byl úspěšně odeslán</p>
       </div>
     );
   }

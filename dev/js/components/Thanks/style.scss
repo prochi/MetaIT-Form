@@ -1,0 +1,16 @@
+@import "../../../scss/colors";
+
+.ThanksWrapper {
+  p {
+    color: $blue;
+    display: block;
+    font-weight: 600;
+    left: 50%;
+    margin: 0;
+    margin-right: -50%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+}

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ButtonIntro from './ButtonIntro';
 import { nextStep } from '../../actions';
+import style from './style.scss';
 
 class Intro extends Component {
   render() {
     return (
       <div>
-        <ButtonIntro
+        <button className="ButtonIntro"
           value="Form"
           onClick={ this.props.onNextStep }
         >
           Spustit dotazník
-        </ButtonIntro>
+        </button>
       </div>
     );
   }

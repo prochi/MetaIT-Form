@@ -20,13 +20,6 @@ export function changeSurname(surname) {
   };
 }
 
-export function selectAgeGroup(agegroup) {
-  return {
-    type: "SELECT_AGEGROUP",
-    agegroup,
-  };
-}
-
 export function changeSex(sex) {
   return {
     type: "CHANGE_SEX",
@@ -52,5 +45,12 @@ export function start(step) {
   return {
     type: "START",
     step,
+  };
+}
+
+export function selectAgeGroup(agegroup) {
+  return {
+    type: "SELECT_AGEGROUP",
+    agegroup,
   };
 }
