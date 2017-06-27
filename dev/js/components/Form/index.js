@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classnames from 'classnames'
+import classnames from 'classnames';
 import AgeGroup from './AgeGroup';
 import Hobby from './Hobby';
 import Cross from './Cross';
 import { changeFirstname, changeSurname, changeSex, changeHobby, nextStep, start } from '../../actions';
-import Select from 'react-select';
 import style from './style.scss';
+import FaPaperPlane from './FaPaperPlane';
+import FaClose from './FaClose';
 
 class Form extends Component {
   constructor() {
@@ -23,15 +24,6 @@ class Form extends Component {
     }
     else {
       this.setState({ ageclass: "FormDiv Close" });
-    }
-  }
-
-  openHobbySelect() {
-    if(this.state.hobbyclass === "FormDiv Close") {
-      this.setState({ hobbyclass: "FormDiv Open" });
-    }
-    else {
-      this.setState({ hobbyclass: "FormDiv Close" });
     }
   }
 
@@ -72,7 +64,7 @@ class Form extends Component {
           <div className={this.state.ageclass}>
             <label>Věková kategorie<span>*</span></label>
             <div
-              onClick={this.openAgeSelect.bind(this)}
+              onClick={ this.openAgeSelect.bind(this) }
             >
               <span className="SpanSelect">
                 {this.props.main.agegroup}
@@ -82,54 +74,43 @@ class Form extends Component {
           </div>
           <div className="FormDiv">
             <label>Pohlaví<span>*</span></label>
-            <span>
+            <span className="SexSpan">
               <input
                 type="radio"
                 name="sex"
                 value="Muž"
                 checked={ this.props.main.sex === 'Muž' }
                 onChange={ this.props.onChangeSex }
-              />Muž
+              />
+              <label>Muž</label>
             </span>
-            <span>
+            <span className="SexSpan">
               <input
                 type="radio"
                 name="sex"
                 value="Žena"
                 checked={ this.props.main.sex === 'Žena' }
                 onChange={ this.props.onChangeSex }
-              />Žena
+              />
+              <label>Žena</label>
             </span>
           </div>
           <div className="FormDiv">
-            <label>Oblibená činnost<span>*</span></label>
-            <input
-              list="hobby"
-              name="hobby"
-              spellCheck="true"
-              required
-              onChange={ this.props.onChangeHobby }
-            />
-          </div>
-          <div className={this.state.hobbyclass}>
             <label>Oblíbená činnost<span>*</span></label>
-            <div
-              onClick={this.openHobbySelect.bind(this)}
-            >
-              <span className="SpanInput">
+            <div>
+              <span>
                 <input
                   list="hobby"
                   name="hobby"
-                  spellCheck="true"
                   required
                   onChange={ this.props.onChangeHobby }
                 />
+                <Hobby/>
               </span>
-              <Hobby/>
             </div>
           </div>
           <button className="ButtonForm">
-            Odeslat formulář
+            <FaPaperPlane />Odeslat formulář
           </button>
         </form> 
       </div>
@@ -151,6 +132,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     main: state.main.toObject(),
+    hobbyOption: state.hobbyOption,
   };
 }
 

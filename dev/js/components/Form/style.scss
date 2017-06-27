@@ -24,7 +24,7 @@
     animation: fadeIn 1s;
     margin: auto;
     margin-bottom: 50px;
-    max-width: 450px;
+    max-width: 45%;
     overflow: hidden;
   }
 
@@ -61,8 +61,17 @@
     width: 100%;
   }
 
-  span input{
-    width: inherit;
+  .SexSpan {
+    line-height: 30px;
+
+    input {
+      float: left;
+      margin-top: 8px;
+      width: inherit;
+    }
+    label {
+      width: inherit;
+    }
   }
 
   @media (min-width: 450px) {
@@ -77,6 +86,7 @@
 .ButtonForm {
   box-sizing: border-box;
   float: left;
+  font-size: 15px;
   margin-bottom: 15px;
   background-color: $blue;
   border: 1px solid $blue;
@@ -93,6 +103,10 @@
   top: 50%;
   transform: translate(-50%, 0);
   transition: background-color 0.3s ease-out;
+
+  svg {
+    padding-right: 5px;
+  }
 
   &:hover {
     background-color: $white;
@@ -124,16 +138,18 @@
 }
 
 .SpanInput {
-  border: 1px solid $greylight;
-  border-radius: 4px;
-  box-sizing: border-box;
-  cursor: pointer;
   float: left;
-  padding: 6px;
   width: 100%;
 
   input {
+    border: 1px solid $greylight;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    padding: 6px;
     padding-right: 40px;
+    width: 100%; 
   }
 
   &:after {
@@ -145,9 +161,9 @@
     font-size: 12px;
     padding: 0;
     position: absolute;
-    right: 14px;
+    right: 8px;
     margin: 0;
-    top: 14px;
+    top: 8px;
     border-left: 1px solid $greylight;
   }
 }

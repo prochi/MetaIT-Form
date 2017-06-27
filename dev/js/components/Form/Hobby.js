@@ -8,12 +8,12 @@ class Hobby extends Component {
     return this.props.hobbyOption.map( hobby => {
       if (this.props.main.agegroup === hobby.cat) {
         return (
-          <li 
+          <option 
             key={hobby.id} 
             value={hobby.name} 
           >
             {hobby.name}
-          </li>
+          </option>
         );
       }
     });
@@ -22,11 +22,13 @@ class Hobby extends Component {
   render() {
     
     return (
-      <div>
-        <ul className="DropDown">
-          {this.hobbyList()}
-        </ul>
-      </div>
+
+        <datalist id="hobby" className="DropDown">
+          <select name="hobby">
+            {this.hobbyList()}
+          </select>
+        </datalist>
+
     )
   }
 }

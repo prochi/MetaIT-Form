@@ -1,12 +1,13 @@
 @import "colors";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 //----------FONTS
-$font-stack: Arial, sans-serif;
+$font-stack: 'Roboto', sans-serif;
 
 body {
 	background-color: $grey;
 	font-family: $font-stack;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 1;
 	margin: 0;
 }
